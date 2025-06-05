@@ -1,10 +1,8 @@
 import './App.css';
-import { Button } from './components/ui/button';
+import { HomePage } from './pages/home';
 
 function App() {
-  return (
-    
-  );
+  return <HomePage />;
 }
 
 export default App;

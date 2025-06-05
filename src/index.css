@@ -2,3 +2,16 @@
 @import 'tw-animate-css';
 
 @custom-variant dark (&:is(.dark *));
+
+@theme {
+  --color-Gray1: #333333;
+  --color-Gray2: #4f4f4f;
+  --color-Gray6: #f2f2f2;
+  --color-Blue1: #2f80ed;
+
+  --font-lato: 'Lato', sans-serif;
+}
+
+.pop-button {
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.1);
+}
