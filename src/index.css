@@ -6,10 +6,14 @@
 @theme {
   --color-Gray1: #333333;
   --color-Gray2: #4f4f4f;
+  --color-Gray3: #828282;
   --color-Gray6: #f2f2f2;
+  --color-Gray7: #bdbdbd;
   --color-Blue1: #2f80ed;
 
   --font-lato: 'Lato', sans-serif;
+
+  --breakpoint-3xl: 1920px;
 }
 
 .pop-button {
