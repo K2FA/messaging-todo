@@ -1,5 +1,5 @@
 import type { PopOverProps } from '@/types/popover-type';
-import { InboxPopButton } from './inbox-pop-button';
+import { InboxPopButton } from './inbox/inbox-pop-button';
 import { TaskPopButton } from './task-pop-button';
 
 /**

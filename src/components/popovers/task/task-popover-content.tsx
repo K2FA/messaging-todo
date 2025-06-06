@@ -1,4 +1,4 @@
-import { Loading } from '../loaders/loading';
+import { Loading } from '../../loaders/loading';
 
 /**
  * TaskPopOverContent Component

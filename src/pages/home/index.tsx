@@ -1,6 +1,6 @@
 import { HomeLayout } from '@/layouts/home-layout';
 import { useEffect, useState } from 'react';
-import { OpenQuickTabSection } from './sections/open-quick/open-quick-tab-section';
+import { OpenQuickTabSection } from './sections/open-quick-tab-section';
 
 /**
  * HomePage Component

@@ -2,8 +2,8 @@ import questionAnswer from '@/assets/icons/question_answer.png';
 import questionAnswerWhite from '@/assets/icons/question_answer_white.png';
 import { cn } from '@/lib/utils';
 import type { PopOverProps } from '@/types/popover-type';
-import { InboxPopOverContent } from '../popovers/inbox-popover-content';
-import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover';
+import { InboxPopOverContent } from '../../popovers/inbox/inbox-popover-content';
+import { Popover, PopoverContent, PopoverTrigger } from '../../ui/popover';
 
 /**
  * InboxPopButton Component

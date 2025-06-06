@@ -2,7 +2,7 @@ import chromeReader from '@/assets/icons/chrome_reader_mode.png';
 import chromeReaderWhite from '@/assets/icons/chrome_reader_mode_white.png';
 import { cn } from '@/lib/utils';
 import type { PopOverProps } from '@/types/popover-type';
-import { TaskPopOverContent } from '../popovers/task-popover-content';
+import { TaskPopOverContent } from '../popovers/task/task-popover-content';
 import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover';
 
 /**
