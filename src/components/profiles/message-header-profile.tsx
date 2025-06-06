@@ -25,7 +25,7 @@ export function MessageHeaderProfile() {
         />
       </Button>
 
-      <Button className='w-6 h-6 cursor-pointer'>
+      <Button className='w-6 h-6 cursor-pointer hover:-rotate-12 transition ease-out duration-200'>
         <X
           size={24}
           className='w-6 h-6'

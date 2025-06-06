@@ -1,4 +1,4 @@
-import { MessageView } from '@/components/chats/message-view';
+import { MessageView } from '@/components/messages/message-view';
 import { Loading } from '../../loaders/loading';
 
 /**
