@@ -9,10 +9,10 @@ export function ChatListText({ chatList }: { chatList: ChatListItemsType }) {
 
   return (
     <div className='w-full pb-2'>
-      <div className='w-full flex gap-3 items-center'>
+      <div className='w-full flex gap-4 '>
         <HeadingOne
           title={chatList.subject || ''}
-          className='text-Blue1 text-sm max-w-[310px] 3xl:max-w-[446px]'
+          className='text-Blue1 text-sm max-w-[334px] 3xl:max-w-[446px]'
         />
 
         <HeadingOne
