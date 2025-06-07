@@ -1,4 +1,8 @@
-import { MessageView } from '@/components/messages/message-view';
+import { ChatListItemsButton } from '@/components/buttons/inbox/chat-list-items-button';
+import { SearchInput } from '@/components/input/search-input';
+import { fetchChatlist } from '@/fetcher/chatlist';
+import type { ChatListType } from '@/types/chatlist-item';
+import { useEffect, useState } from 'react';
 import { Loading } from '../../loaders/loading';
 
 /**
@@ -10,23 +14,34 @@ import { Loading } from '../../loaders/loading';
  * Props:
  * - isLoading: boolean – Determines whether to display the loading spinner or actual content.
  */
-export function InboxPopOverContent({ isLoading }: { isLoading: boolean }) {
+export function InboxPopOverContent() {
+  const [chatListItems, setChatListItems] = useState<ChatListType | null>(null);
+  // Indicates loading state while popover content is being fetched/rendered
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+
+  useEffect(() => {
+    const loadChatList = async () => {
+      const data = await fetchChatlist();
+      setChatListItems(data);
+      setIsLoading(false);
+    };
+    loadChatList();
+  }, []);
+
   return (
-    <div className='w-full h-full bg-white rounded-[5px] border border-solid border-Gray7 py- px-'>
+    <div className='w-full h-full bg-white rounded-[5px] border border-solid border-Gray7 py-5 px-[29px]'>
       {/* Search input with icon */}
-      {/* <form className='w-full h-8 flex items-center'>
+      <form className='w-full h-8 flex items-center'>
         <SearchInput />
-      </form> */}
+      </form>
 
       {/* Conditionally show loading state or inbox content */}
       {isLoading ? (
         <Loading label='Chats' />
       ) : (
-        // <div className='py-[22px] border-b border-solid border-Gray3'>
-        //   <ChatListItemsButton />
+        <ChatListItemsButton chatListItems={chatListItems?.inbox} />
 
-        // </div>
-        <MessageView />
+        // <MessageView />
       )}
     </div>
   );

@@ -1,4 +1,4 @@
 export interface HeadingProps {
-  title: string;
+  title: string | Date;
   className?: string;
 }

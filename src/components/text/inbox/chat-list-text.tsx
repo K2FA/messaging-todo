@@ -1,31 +1,35 @@
+import type { ChatListItemsType } from '@/types/chatlist-item';
+import { format } from 'date-fns';
 import { HeadingOne } from '../heading-one';
 import { HeadingTwo } from '../heading-two';
 import { Paragraph } from '../paragraph';
 
-export function ChatListText() {
+export function ChatListText({ chatList }: { chatList: ChatListItemsType }) {
+  const formattedData = format(new Date(chatList.timestamp), 'MM/dd/yyyy HH:mm');
+
   return (
     <div className='w-full pb-2'>
-      <div className='flex gap-4'>
+      <div className='w-full flex gap-3 items-center'>
         <HeadingOne
-          title='109220-Naturalization'
-          className='text-Blue1 text-sm'
+          title={chatList.subject || ''}
+          className='text-Blue1 text-sm max-w-[310px] 3xl:max-w-[446px]'
         />
 
         <HeadingOne
-          title='January 1, 2021 19:10'
-          className='font-normal text-sm'
+          title={formattedData}
+          className='font-normal text-xs 3xl:text-sm'
         />
       </div>
 
-      <div className='w-full pt-1'>
+      <div className='max-w-[337px] 3xl:max-w-[450px] pt-1 overflow-hidden whitespace-nowrap text-ellipsis'>
         <HeadingTwo
-          title='Cameron Phillips :'
+          title={chatList.lastMessage.sender}
           className='text-Gray2 leading-4 text-xs'
         />
 
         <Paragraph
-          text='Please check this out!'
-          className='leading-4 text-xs'
+          text={chatList.lastMessage.message}
+          className='w-full leading-4 text-xs overflow-hidden text-ellipsis'
         />
       </div>
     </div>
