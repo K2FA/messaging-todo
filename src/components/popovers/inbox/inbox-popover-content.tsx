@@ -16,23 +16,32 @@ import { Loading } from '../../loaders/loading';
  * Props:
  * - isLoading: boolean – Determines whether to display the loading spinner or actual content.
  */
-export function InboxPopOverContent({ isLoading }: { isLoading?: boolean }) {
+export function InboxPopOverContent() {
   const [chatListItems, setChatListItems] = useState<ChatListType | null>(null);
   const [conversations, setConversations] = useState<{ [key: number]: ConversationType } | null>(null);
   const [selectedConversationId, setSelectedConversationId] = useState<number | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
+    let timer: ReturnType<typeof setTimeout>;
     const loadChatList = async () => {
       try {
         const data = await fetchChatList();
         const conversationData = await fetchConversation();
         setChatListItems(data);
         setConversations(conversationData);
+
+        timer = setTimeout(() => {
+          setIsLoading(false);
+        }, 1000);
       } catch (error) {
         console.error('Error fetching chat list:', error);
+        setIsLoading(false);
       }
     };
     loadChatList();
+    // Cleanup timeout to prevent memory leaks
+    return () => clearTimeout(timer);
   }, []);
 
   if (selectedConversationId !== null) {

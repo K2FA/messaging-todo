@@ -9,8 +9,6 @@ interface MessageViewProps {
 }
 
 export function MessageView({ conversation, onBackClick }: MessageViewProps) {
-  console.log(conversation);
-
   return (
     <div className='w-full h-full bg-white rounded-[5px] border border-solid border-Gray7'>
       <div className='w-full h-full pb-[19px] '>
@@ -20,7 +18,12 @@ export function MessageView({ conversation, onBackClick }: MessageViewProps) {
           onBackClick={onBackClick}
         />
 
-        <MessageContent />
+        {conversation && (
+          <MessageContent
+            messages={conversation.messages}
+            participants={conversation.participants}
+          />
+        )}
 
         <MessageInput />
       </div>

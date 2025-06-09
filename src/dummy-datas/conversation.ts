@@ -5,19 +5,25 @@ export async function fetchConversation(): Promise<{ [key: number]: Conversation
     1: {
       id: 1,
       title: '109220-Naturalization',
-      participants: ['You', 'Cameron Phillips'],
+      participants: ['You', 'Cameron Phillips', 'Obaidullah Amarkhil'],
       messages: [
         {
           id: 1,
           sender: 'Cameron Phillips',
           message: 'Hello, I need your help with the naturalization application.',
-          timestamp: new Date('2021-06-09T19:32:00Z'),
+          timestamp: new Date('2025-06-08T19:32:00Z'),
         },
         {
           id: 2,
           sender: 'You',
           message: 'Sure, let me know how I can assist.',
-          timestamp: new Date('2021-06-09T19:35:00Z'),
+          timestamp: new Date('2025-06-08T19:35:00Z'),
+        },
+        {
+          id: 3,
+          sender: 'Obaidullah Amarkhil',
+          message: 'Let me know too.',
+          timestamp: new Date('2025-06-09T09:32:00Z'),
         },
       ],
     },
@@ -34,9 +40,15 @@ export async function fetchConversation(): Promise<{ [key: number]: Conversation
         },
         {
           id: 2,
-          sender: 'John',
+          sender: 'Johny',
           message: 'Got it, thanks!',
           timestamp: new Date('2021-06-09T19:34:00Z'),
+        },
+        {
+          id: 3,
+          sender: 'You',
+          message: 'Sure, let me know how I can assist.',
+          timestamp: new Date('2025-06-08T19:35:00Z'),
         },
       ],
     },

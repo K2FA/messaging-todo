@@ -1,3 +1,4 @@
+import { cn } from '@/lib/utils';
 import { ArrowLeft, X } from 'lucide-react';
 import { HeadingOne } from '../text/heading-one';
 import { HeadingTwo } from '../text/heading-two';
@@ -10,6 +11,8 @@ interface MessageHeaderProfileProps {
 }
 
 export function MessageHeaderProfile({ title, participants, onBackClick }: MessageHeaderProfileProps) {
+  const isGroupChat = participants.length <= 2;
+
   return (
     <div className='w-full flex items-center gap-[14px] py-[19px] px-[29px] border-b border-solid border-Gray4'>
       <Button
@@ -29,7 +32,7 @@ export function MessageHeaderProfile({ title, participants, onBackClick }: Messa
 
         <HeadingTwo
           title={`${participants?.length} Participants`}
-          className='text-xs font-normal'
+          className={cn('text-xs font-normal', isGroupChat ? 'hidden' : 'block')}
         />
       </Button>
 
