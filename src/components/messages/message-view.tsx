@@ -1,15 +1,29 @@
-import { MessageInput } from '../input/message-input';
-import { MessageHeaderProfile } from '../profiles/message-header-profile';
+import type { ConversationType } from '@/types/chatlist-item';
 import { MessageContent } from './message-content';
+import { MessageHeaderProfile } from './message-header-profile';
+import { MessageInput } from './message-input';
 
-export function MessageView() {
+interface MessageViewProps {
+  conversation?: ConversationType;
+  onBackClick?: () => void;
+}
+
+export function MessageView({ conversation, onBackClick }: MessageViewProps) {
+  console.log(conversation);
+
   return (
-    <div className='w-full h-full pb-[19px] '>
-      <MessageHeaderProfile />
+    <div className='w-full h-full bg-white rounded-[5px] border border-solid border-Gray7'>
+      <div className='w-full h-full pb-[19px] '>
+        <MessageHeaderProfile
+          title={conversation?.title || ''}
+          participants={conversation?.participants || []}
+          onBackClick={onBackClick}
+        />
 
-      <MessageContent />
+        <MessageContent />
 
-      <MessageInput />
+        <MessageInput />
+      </div>
     </div>
   );
 }

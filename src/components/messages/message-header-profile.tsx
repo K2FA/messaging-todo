@@ -3,10 +3,18 @@ import { HeadingOne } from '../text/heading-one';
 import { HeadingTwo } from '../text/heading-two';
 import { Button } from '../ui/button';
 
-export function MessageHeaderProfile() {
+interface MessageHeaderProfileProps {
+  title: string;
+  participants: string[];
+  onBackClick?: () => void;
+}
+
+export function MessageHeaderProfile({ title, participants, onBackClick }: MessageHeaderProfileProps) {
   return (
     <div className='w-full flex items-center gap-[14px] py-[19px] px-[29px] border-b border-solid border-Gray4'>
-      <Button className='w-6 h-6 cursor-pointer'>
+      <Button
+        onClick={onBackClick}
+        className='w-6 h-6 cursor-pointer'>
         <ArrowLeft
           size={24}
           className='w-6 h-6'
@@ -15,12 +23,12 @@ export function MessageHeaderProfile() {
 
       <Button className='w-full flex flex-col gap-[9.36px] cursor-pointer'>
         <HeadingOne
-          title='109220-Naturalization'
+          title={title || ''}
           className='text-base text-Blue1'
         />
 
         <HeadingTwo
-          title='3 Participants'
+          title={`${participants?.length} Participants`}
           className='text-xs font-normal'
         />
       </Button>

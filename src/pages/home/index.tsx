@@ -29,7 +29,7 @@ export function HomePage() {
 
       const timer = setTimeout(() => {
         setIsLoading(false);
-      }, 2000);
+      }, 1000);
 
       // Cleanup timeout to prevent memory leaks
       return () => clearTimeout(timer);

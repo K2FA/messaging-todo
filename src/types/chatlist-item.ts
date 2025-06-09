@@ -23,3 +23,17 @@ export type ChatListType = {
 export type ChatListItemsProps = {
   chatListItems?: ChatListItemsType[];
 };
+
+interface UserConversation {
+  id: number;
+  sender: string;
+  message: string;
+  timestamp: Date;
+}
+
+export type ConversationType = {
+  id: number;
+  title: string;
+  participants: string[];
+  messages: UserConversation[];
+};

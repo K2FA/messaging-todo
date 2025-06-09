@@ -1,7 +1,9 @@
 import { ChatListItemsButton } from '@/components/buttons/inbox/chat-list-items-button';
 import { SearchInput } from '@/components/input/search-input';
-import { fetchChatlist } from '@/fetcher/chatlist';
-import type { ChatListType } from '@/types/chatlist-item';
+import { MessageView } from '@/components/messages/message-view';
+import { fetchChatList } from '@/dummy-datas/chat-list-item';
+import { fetchConversation } from '@/dummy-datas/conversation';
+import type { ChatListType, ConversationType } from '@/types/chatlist-item';
 import { useEffect, useState } from 'react';
 import { Loading } from '../../loaders/loading';
 
@@ -14,34 +16,55 @@ import { Loading } from '../../loaders/loading';
  * Props:
  * - isLoading: boolean – Determines whether to display the loading spinner or actual content.
  */
-export function InboxPopOverContent() {
+export function InboxPopOverContent({ isLoading }: { isLoading?: boolean }) {
   const [chatListItems, setChatListItems] = useState<ChatListType | null>(null);
-  // Indicates loading state while popover content is being fetched/rendered
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [conversations, setConversations] = useState<{ [key: number]: ConversationType } | null>(null);
+  const [selectedConversationId, setSelectedConversationId] = useState<number | null>(null);
 
   useEffect(() => {
     const loadChatList = async () => {
-      const data = await fetchChatlist();
-      setChatListItems(data);
-      setIsLoading(false);
+      try {
+        const data = await fetchChatList();
+        const conversationData = await fetchConversation();
+        setChatListItems(data);
+        setConversations(conversationData);
+      } catch (error) {
+        console.error('Error fetching chat list:', error);
+      }
     };
     loadChatList();
   }, []);
 
+  if (selectedConversationId !== null) {
+    const selectedConversation = conversations?.[selectedConversationId];
+
+    return (
+      <MessageView
+        conversation={selectedConversation}
+        onBackClick={() => setSelectedConversationId(null)}
+      />
+    );
+  }
+
   return (
     <div className='w-full h-full bg-white rounded-[5px] border border-solid border-Gray7 py-5 px-[29px]'>
-      {/* Search input with icon */}
-      <form className='w-full h-8 flex items-center'>
-        <SearchInput />
-      </form>
-
       {/* Conditionally show loading state or inbox content */}
       {isLoading ? (
         <Loading label='Chats' />
       ) : (
-        <ChatListItemsButton chatListItems={chatListItems?.inbox} />
+        <>
+          {/* Search input with icon */}
+          <form className='w-full '>
+            <div className='w-full h-8 flex items-center'>
+              <SearchInput />
+            </div>
 
-        // <MessageView />
+            <ChatListItemsButton
+              chatListItems={chatListItems?.inbox}
+              onConversationSelect={setSelectedConversationId}
+            />
+          </form>
+        </>
       )}
     </div>
   );

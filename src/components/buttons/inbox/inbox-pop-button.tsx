@@ -18,7 +18,7 @@ import { Popover, PopoverContent, PopoverTrigger } from '../../ui/popover';
  * - setActivePopover: State updater to switch between popovers.
  * - isLoading: Boolean to display a loading state while fetching content.
  */
-export function InboxPopButton({ isOpen, activePopover, setActivePopover }: PopOverProps) {
+export function InboxPopButton({ isOpen, activePopover, setActivePopover, isLoading }: PopOverProps) {
   const isActive = activePopover === 'inbox';
 
   return (
@@ -55,7 +55,7 @@ export function InboxPopButton({ isOpen, activePopover, setActivePopover }: PopO
 
         <PopoverContent className='w-[550px] h-[553px] 3xl:w-[734px] 3xl:h-[737px] border-0 mb-[15px]'>
           {/* Inbox content with loading indicator */}
-          <InboxPopOverContent />
+          <InboxPopOverContent isLoading={isLoading} />
         </PopoverContent>
       </Popover>
     </div>

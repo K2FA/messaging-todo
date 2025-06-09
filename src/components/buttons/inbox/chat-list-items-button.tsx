@@ -1,18 +1,25 @@
+import { GroupAvatar } from '@/components/avatar/group-avatar';
+import { PersonalAvatar } from '@/components/avatar/personal-avatar';
 import { ChatListText } from '@/components/text/inbox/chat-list-text';
 import type { ChatListItemsProps } from '@/types/chatlist-item';
 import { ChatNotificationBadge } from '../../badges/chat-notification-badge';
-import { ChatProfile } from '../../profiles/chat-profile';
 import { Button } from '../../ui/button';
 
-export function ChatListItemsButton({ chatListItems }: ChatListItemsProps) {
+export function ChatListItemsButton({
+  chatListItems,
+  onConversationSelect,
+}: ChatListItemsProps & { onConversationSelect: (id: number) => void }) {
   return (
     <>
       {chatListItems?.map((listItem, index) => (
         <div
           key={index}
           className='py-[22px] border-b border-solid border-Gray3'>
-          <Button className='w-full cursor-pointer flex relative '>
-            <ChatProfile />
+          <Button
+            type='button'
+            onClick={() => onConversationSelect(listItem.id)}
+            className='w-full cursor-pointer flex relative '>
+            {listItem.type === 'personal' ? <PersonalAvatar listItem={listItem} /> : <GroupAvatar />}
 
             <ChatListText chatList={listItem} />
 

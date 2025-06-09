@@ -1,7 +1,7 @@
 import personGrayStroke from '@/assets/icons/person.png';
 import personWhiteStroke from '@/assets/icons/person_white.png';
 
-export function ChatProfile() {
+export function GroupAvatar() {
   return (
     <div className='w-fit relative flex pt-1'>
       <div className='w-[34px] h-[34px] relative p-2 bg-Gray5 rounded-full'>
