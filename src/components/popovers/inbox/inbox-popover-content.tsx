@@ -5,7 +5,7 @@ import { MessageView } from '@/components/messages/message-view';
 import { fetchChatList } from '@/dummy-datas/chat-list-item';
 import { fetchConversation } from '@/dummy-datas/conversation';
 import type { ChatListType, ConversationType } from '@/types/chatlist-item';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, type Dispatch, type SetStateAction } from 'react';
 import { Loading } from '../../loaders/loading';
 
 /**
@@ -21,7 +21,11 @@ import { Loading } from '../../loaders/loading';
  * - isLoading: Toggles loading spinner during data fetching.
  * - search: Stores the current search input for filtering conversations.
  */
-export function InboxPopOverContent() {
+interface InboxPopOverContentProps {
+  setActivePopover: Dispatch<SetStateAction<'task' | 'inbox' | null>>;
+}
+
+export function InboxPopOverContent({ setActivePopover }: InboxPopOverContentProps) {
   const [chatListItems, setChatListItems] = useState<ChatListType | null>(null);
   const [conversations, setConversations] = useState<{ [key: number]: ConversationType } | null>(null);
   const [selectedConversationId, setSelectedConversationId] = useState<number | null>(null);
@@ -64,6 +68,7 @@ export function InboxPopOverContent() {
       <MessageView
         conversation={selectedConversation}
         onBackClick={() => setSelectedConversationId(null)}
+        setActivePopover={setActivePopover}
       />
     );
   }

@@ -1,6 +1,6 @@
 // Import required hooks and UI components
 import type { ConversationType } from '@/types/chatlist-item';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, type Dispatch, type SetStateAction } from 'react';
 import { MessageContent } from './message-content';
 import { MessageHeaderProfile } from './message-header-profile';
 import { MessageInput } from './message-input';
@@ -9,6 +9,7 @@ import { MessageInput } from './message-input';
 interface MessageViewProps {
   conversation?: ConversationType;
   onBackClick?: () => void;
+  setActivePopover: Dispatch<SetStateAction<'task' | 'inbox' | null>>;
 }
 
 /**
@@ -21,7 +22,7 @@ interface MessageViewProps {
  * - conversation: ConversationType (optional) — The conversation object to be rendered.
  * - onBackClick: function (optional) — Callback for the back button (useful for mobile views).
  */
-export function MessageView({ conversation, onBackClick }: MessageViewProps) {
+export function MessageView({ conversation, onBackClick, setActivePopover }: MessageViewProps) {
   // Ref to the scrollable container to control scroll behavior
   const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -77,6 +78,7 @@ export function MessageView({ conversation, onBackClick }: MessageViewProps) {
           title={conversation?.title || ''}
           participants={conversation?.participants || []}
           onBackClick={onBackClick}
+          setActivePopover={setActivePopover}
         />
 
         {/* Message body content with scroll tracking */}

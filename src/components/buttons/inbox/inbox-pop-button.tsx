@@ -40,7 +40,7 @@ export function InboxPopButton({ isOpen, activePopover, setActivePopover }: PopO
 
       {/* Popover for Inbox content */}
       <Popover
-        open={activePopover === 'inbox'}
+        open={isActive}
         onOpenChange={(open) => setActivePopover(open ? 'inbox' : null)}>
         <PopoverTrigger
           className={cn(
@@ -55,7 +55,7 @@ export function InboxPopButton({ isOpen, activePopover, setActivePopover }: PopO
 
         <PopoverContent className='w-[550px] h-[553px] 3xl:w-[734px] 3xl:h-[737px] border-0 mb-[15px]'>
           {/* Inbox content with loading indicator */}
-          <InboxPopOverContent />
+          <InboxPopOverContent setActivePopover={setActivePopover} />
         </PopoverContent>
       </Popover>
     </div>
