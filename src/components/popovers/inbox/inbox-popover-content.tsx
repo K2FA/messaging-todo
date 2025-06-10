@@ -1,3 +1,4 @@
+// Import necessary UI components and hooks
 import { ChatListItemsButton } from '@/components/buttons/inbox/chat-list-items-button';
 import { SearchInput } from '@/components/input/search-input';
 import { MessageView } from '@/components/messages/message-view';
@@ -10,11 +11,15 @@ import { Loading } from '../../loaders/loading';
 /**
  * InboxPopOverContent Component
  *
- * This component represents the content inside the Inbox popover panel.
- * It includes a search input and conditionally shows a loading indicator.
+ * This component displays a popover containing a searchable list of chat conversations.
+ * It shows a loading state while fetching data, and allows the user to view individual messages.
  *
- * Props:
- * - isLoading: boolean – Determines whether to display the loading spinner or actual content.
+ * State:
+ * - chatListItems: Holds fetched chat list data.
+ * - conversations: Holds detailed conversation data indexed by ID.
+ * - selectedConversationId: Tracks which conversation is currently selected.
+ * - isLoading: Toggles loading spinner during data fetching.
+ * - search: Stores the current search input for filtering conversations.
  */
 export function InboxPopOverContent() {
   const [chatListItems, setChatListItems] = useState<ChatListType | null>(null);
@@ -23,15 +28,19 @@ export function InboxPopOverContent() {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [search, setSearch] = useState<string>('');
 
+  // Fetch chat list and conversation data on mount
   useEffect(() => {
     let timer: ReturnType<typeof setTimeout>;
+
     const loadChatList = async () => {
       try {
+        // Simulate fetching data from an API or dummy source
         const data = await fetchChatList();
         const conversationData = await fetchConversation();
         setChatListItems(data);
         setConversations(conversationData);
 
+        // Simulate a short delay before turning off loading
         timer = setTimeout(() => {
           setIsLoading(false);
         }, 1000);
@@ -40,11 +49,14 @@ export function InboxPopOverContent() {
         setIsLoading(false);
       }
     };
+
     loadChatList();
-    // Cleanup timeout to prevent memory leaks
+
+    // Clear timeout on unmount to prevent memory leaks
     return () => clearTimeout(timer);
   }, []);
 
+  // If a conversation is selected, render the message view
   if (selectedConversationId !== null) {
     const selectedConversation = conversations?.[selectedConversationId];
 
@@ -56,6 +68,7 @@ export function InboxPopOverContent() {
     );
   }
 
+  // Filter inbox chat list items based on search query
   const inbox = chatListItems?.inbox ?? [];
   const filtered = search
     ? inbox.filter((c) => {
@@ -68,15 +81,16 @@ export function InboxPopOverContent() {
       })
     : inbox;
 
+  // Render inbox UI with optional loading state and filtered chat list
   return (
     <div className='w-full h-full bg-white rounded-[5px] border border-solid border-Gray7 py-5 px-[29px]'>
-      {/* Conditionally show loading state or inbox content */}
+      {/* Show loading indicator if data is still being fetched */}
       {isLoading ? (
         <Loading label='Chats' />
       ) : (
         <>
-          {/* Search input with icon */}
-          <form className='w-full '>
+          {/* Search input field */}
+          <form className='w-full'>
             <div className='w-full h-8 flex items-center'>
               <SearchInput
                 search={search}
@@ -84,6 +98,7 @@ export function InboxPopOverContent() {
               />
             </div>
 
+            {/* Display filtered chat list items */}
             <ChatListItemsButton
               chatListItems={filtered}
               onConversationSelect={setSelectedConversationId}

@@ -1,3 +1,4 @@
+// Import types, utilities, and message components
 import type { MessageType } from '@/types/chatlist-item';
 import { getColorByName } from '@/utils/get-color';
 import { groupMessagesWithSeparators } from '@/utils/group-messsage-with-separator';
@@ -6,6 +7,7 @@ import type { RefObject } from 'react';
 import { MessageBubble } from './message-bubble';
 import { MessageDateInformation } from './message-date-information';
 
+// Define the props expected by the MessageContent component
 interface MessageContentProps {
   messages: MessageType[];
   participants: string[];
@@ -14,11 +16,29 @@ interface MessageContentProps {
   onScroll?: () => void;
 }
 
+/**
+ * MessageContent Component
+ *
+ * Displays a scrollable list of chat messages with support for:
+ * - Group chat highlighting by assigning colors to participants
+ * - Visual grouping by date
+ * - "New message" separator after lastReadAt
+ *
+ * Props:
+ * - messages: MessageType[] — List of messages in the conversation.
+ * - participants: string[] — List of participant names.
+ * - lastReadAt?: Date — Timestamp indicating the last read message.
+ * - scrollRef?: RefObject — A ref used to control scroll position externally.
+ * - onScroll?: () => void — Callback for scroll events, useful for showing scroll-to-bottom buttons.
+ */
 export function MessageContent({ messages, participants, lastReadAt, onScroll, scrollRef }: MessageContentProps) {
+  // Detect if it's a group chat based on participant count
   const isGroupChat = participants.length > 2;
 
+  // Create a color map for each participant
   const participantColorMap = Object.fromEntries(participants.map((p) => [p, getColorByName(p)]));
 
+  // Group messages by date and inject a "New Message" separator after lastReadAt
   const groupedMessages = groupMessagesWithSeparators(messages, lastReadAt);
 
   return (
@@ -58,8 +78,6 @@ export function MessageContent({ messages, participants, lastReadAt, onScroll, s
           }
         })}
       </div>
-
-      {/* <ScrollBar orientation='vertical' /> */}
     </div>
   );
 }
