@@ -21,6 +21,7 @@ export function InboxPopOverContent() {
   const [conversations, setConversations] = useState<{ [key: number]: ConversationType } | null>(null);
   const [selectedConversationId, setSelectedConversationId] = useState<number | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [search, setSearch] = useState<string>('');
 
   useEffect(() => {
     let timer: ReturnType<typeof setTimeout>;
@@ -55,6 +56,18 @@ export function InboxPopOverContent() {
     );
   }
 
+  const inbox = chatListItems?.inbox ?? [];
+  const filtered = search
+    ? inbox.filter((c) => {
+        const q = search.toLowerCase();
+        return (
+          c.subject?.toLowerCase().includes(q) ||
+          c.lastMessage.message.toLowerCase().includes(q) ||
+          c.participants.some((p) => p.toLowerCase().includes(q))
+        );
+      })
+    : inbox;
+
   return (
     <div className='w-full h-full bg-white rounded-[5px] border border-solid border-Gray7 py-5 px-[29px]'>
       {/* Conditionally show loading state or inbox content */}
@@ -65,11 +78,14 @@ export function InboxPopOverContent() {
           {/* Search input with icon */}
           <form className='w-full '>
             <div className='w-full h-8 flex items-center'>
-              <SearchInput />
+              <SearchInput
+                search={search}
+                setSearch={setSearch}
+              />
             </div>
 
             <ChatListItemsButton
-              chatListItems={chatListItems?.inbox}
+              chatListItems={filtered}
               onConversationSelect={setSelectedConversationId}
             />
           </form>
