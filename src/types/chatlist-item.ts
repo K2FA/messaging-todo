@@ -36,4 +36,5 @@ export type ConversationType = {
   title: string;
   participants: string[];
   messages: MessageType[];
+  lastReadAt?: Date;
 };

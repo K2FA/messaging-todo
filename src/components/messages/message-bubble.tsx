@@ -49,7 +49,7 @@ export function MessageBubble({ messageContent, isGroupChat, participantColorMap
           </PopoverTrigger>
           <PopoverContent
             align={isCurrentUser ? 'start' : 'end'}
-            className='w-[126px] text-start border border-solid border-Gray4 shadow-none bg-white'>
+            className='w-[126px] text-start border border-solid border-Gray4 shadow-none bg-white rounded-[5px]'>
             <EditDeleteContent />
           </PopoverContent>
         </Popover>

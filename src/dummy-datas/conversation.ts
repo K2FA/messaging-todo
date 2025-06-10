@@ -6,12 +6,61 @@ export async function fetchConversation(): Promise<{ [key: number]: Conversation
       id: 1,
       title: '109220-Naturalization',
       participants: ['You', 'Cameron Phillips', 'Obaidullah Amarkhil'],
+      lastReadAt: new Date('2025-06-08T19:40:00Z'),
       messages: [
         {
           id: 1,
           sender: 'Cameron Phillips',
           message: 'Hello, I need your help with the naturalization application.',
           timestamp: new Date('2025-06-08T19:32:00Z'),
+        },
+        {
+          id: 2,
+          sender: 'You',
+          message: 'Sure, let me know how I can assist.',
+          timestamp: new Date('2025-06-08T19:35:00Z'),
+        },
+        {
+          id: 2,
+          sender: 'You',
+          message: 'Sure, let me know how I can assist.',
+          timestamp: new Date('2025-06-08T19:35:00Z'),
+        },
+        {
+          id: 2,
+          sender: 'You',
+          message: 'Sure, let me know how I can assist.',
+          timestamp: new Date('2025-06-08T19:35:00Z'),
+        },
+        {
+          id: 2,
+          sender: 'You',
+          message: 'Sure, let me know how I can assist.',
+          timestamp: new Date('2025-06-08T19:35:00Z'),
+        },
+        {
+          id: 2,
+          sender: 'You',
+          message: 'Sure, let me know how I can assist.',
+          timestamp: new Date('2025-06-08T19:35:00Z'),
+        },
+        {
+          id: 2,
+          sender: 'You',
+          message: 'Sure, let me know how I can assist.',
+          timestamp: new Date('2025-06-08T19:35:00Z'),
+        },
+        {
+          id: 2,
+          sender: 'You',
+          message: 'Sure, let me know how I can assist.',
+          timestamp: new Date('2025-06-08T19:35:00Z'),
+        },
+        {
+          id: 2,
+          sender: 'You',
+          message: 'Sure, let me know how I can assist.',
+          timestamp: new Date('2025-06-08T19:35:00Z'),
         },
         {
           id: 2,
@@ -31,6 +80,7 @@ export async function fetchConversation(): Promise<{ [key: number]: Conversation
       id: 2,
       title: 'Jeannette Moraima Guaman Chamba (Hutto I-589) [ Hutto Follow Up - Brief Service ]',
       participants: ['You', 'Ellen', 'John', 'Sarah'],
+      lastReadAt: new Date('2021-06-08T19:40:00Z'),
       messages: [
         {
           id: 1,
@@ -44,18 +94,13 @@ export async function fetchConversation(): Promise<{ [key: number]: Conversation
           message: 'Got it, thanks!',
           timestamp: new Date('2021-06-09T19:34:00Z'),
         },
-        {
-          id: 3,
-          sender: 'You',
-          message: 'Sure, let me know how I can assist.',
-          timestamp: new Date('2025-06-08T19:35:00Z'),
-        },
       ],
     },
     3: {
       id: 3,
       title: '8405-Diana SALAZAR MUNGUA',
       participants: ['You', 'Cameron Phillips'],
+      lastReadAt: new Date('2021-06-08T19:40:00Z'),
       messages: [
         {
           id: 1,
@@ -75,6 +120,7 @@ export async function fetchConversation(): Promise<{ [key: number]: Conversation
       id: 4,
       title: 'FastVisa Support',
       participants: ['You', 'FastVisa Support'],
+      lastReadAt: new Date('2021-06-09T19:40:00Z'),
       messages: [
         {
           id: 1,

@@ -2,10 +2,15 @@ import { NewMessageNotification } from '../notifications/new-message-notificatio
 import { Button } from '../ui/button';
 import { Input } from '../ui/input';
 
-export function MessageInput() {
+interface MessageInputProps {
+  showScrollButton?: boolean;
+  onScrollToBottom?: () => void;
+}
+
+export function MessageInput({ showScrollButton, onScrollToBottom }: MessageInputProps) {
   return (
     <form className='w-full flex gap-[13px] px-5 relative'>
-      <NewMessageNotification />
+      {showScrollButton && <NewMessageNotification handleOnClick={onScrollToBottom} />}
 
       <Input
         placeholder='Type a new message'
